@@ -10,7 +10,10 @@ It's implementation of `ResourceHandler` which uses Angular `HttpClient`
 In you app module
 ```typescript
 
+import { ResourceModule } from '@ngx-resource/handler-ngx-http';
+
 // AoT requires an exported function for factories
+// ONLY if you use your own handler
 export function myHandlerFactory(http: HttpClient) {
     return new MyResourceHandler(http);
 }
@@ -24,7 +27,7 @@ export function myHandlerFactory(http: HttpClient) {
     // Default ResourceHandler uses class `ResourceHandlerHttpClient`
     ResourceModule.forRoot()
     
-    // Or set you own handler
+    // Or set you own handler (with factory previosly defined as shown)
     //ResourceModule.forRoot({
     //  handler: { provide: ResourceHandler, useFactory: (myHandlerFactory), deps: [HttpClient] }
     //})
